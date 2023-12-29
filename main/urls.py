@@ -1,7 +1,8 @@
 from django.urls import path
-from main.views import EducationalModuleListCreateView, EducationalModuleDetailView
+from rest_framework.routers import DefaultRouter
 
-urlpatterns = [
-    path('modules/', EducationalModuleListCreateView.as_view(), name='module-list-create'),
-    path('modules/<int:number>/', EducationalModuleDetailView.as_view(), name='module-detail'),
-]
+from main.views import EducationalModuleViewSet
+
+router = DefaultRouter()
+router.register(r'module', EducationalModuleViewSet, basename='module')
+urlpatterns = router.urls
